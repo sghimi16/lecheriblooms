@@ -7,6 +7,7 @@ if(isset($_POST["category"])){
 	$category_query = "SELECT * FROM categories";
 	$run_query = mysqli_query($con,$category_query) or die(mysqli_error($con));
 	echo "
+	
 		<div class='nav nav-pills nav-stacked'>
 			<li class='active'><a href='#'><h4></h4></a></li>
 	";
@@ -15,7 +16,15 @@ if(isset($_POST["category"])){
 			$cid = $row["cat_id"];
 			$cat_name = $row["cat_title"];
 			echo "
-					<li><a href='#' class='category' cid='$cid'>$cat_name</a></li>
+					
+                	                	<div class='row'>
+                		<div>
+	                		<div class='btn-wrap'>
+							<a href='#' cid='$cid'>'$cat_name'</a>
+		                	</div><!-- End .btn-wrap -->
+		                </div><!-- End .col-md-4 col-lg-2 -->
+                	</div><!-- End .row -->
+					
 			";
 		}
 		echo "</div>";
@@ -74,48 +83,44 @@ if(isset($_POST["getProduct"])){
       $pro_rate = $row['rate'];
 			echo "
 				
-
-  
-                                    
-  
-<div class='col-md-4 col-lg-3 col-xl-2'>
-    <div class='product product-5 text-center'>
-        <figure class='product-media'>
-            
-                <img src='product_images/$pro_image' style='height: 15em;' alt='Product image' class='product-image'>
-            
-
-            <div class='product-action-vertical'>
-                <a class='btn-product-icon btn-wishlist btn-expandable'><span>add to wishlist</span></a>
-                
-            </div><!-- End .product-action-vertical -->
-
-            <div class='product-action'>
-            <a href='#' class='btn-product btn-cart' pid='$pro_id' id='product'><span>add to cart</span></a>
-                
-            </div><!-- End .product-action -->
-        </figure><!-- End .product-media -->
-
-        <div class='product-body'>
-            <div class='product-title' style='color:red; text-transform: capitalize'>
-                $pro_title
-            </div><!-- End .product-cat -->
-            <h3 class='product-title' style='color:black; text-transform: capitalize; height: 3em; overflow: hidden; display: -webkit-box;'>$pro_des</h3><!-- End .product-title -->
-            <div class='product-price'>
-                $ $pro_price
-            </div><!-- End .product-price -->
-            <div class='ratings-container'>
-                <div class='ratings'>
-                    <div class='ratings-val' style='width: $pro_rate%; color:#fa05a0;'></div><!-- End .ratings-val -->
-                </div><!-- End .ratings -->
-                <span class='ratings-text' style='color:black;'>($pro_rate Reviews)</span>
-            </div><!-- End .rating-container -->
-        </div><!-- End .product-body -->
-    </div><!-- End .product -->
-</div><!-- End .col-sm-6 col-lg-4 -->
-                                    
-
-			";
+<div class='product product-10 text-center'>
+				    
+				 <figure class='product-media'>
+					<a href='product.php?pro_id=$pro_id'>
+					    <img src='product_images/$pro_image' alt='Product image' class='product-image'>
+					    
+					</a>
+					<div class='product-action-vertical'>
+					    <a href='wishlist.php' class='btn-product-icon btn-wishlist' title='Add to Wishlist'><span>Add to Wishlist</span></a>
+					</div><!-- End .product-action-vertical -->
+				    </figure><!-- End .product-media -->
+				<div class='product-body'>
+					
+					<div class='product-intro'>
+					    <h3 class='product-title'>
+						<a href='product.php'>$pro_title</a>
+					    </h3><!-- End .product-title -->
+					    <div class='product-price'>
+						$$pro_price
+					    </div><!-- End .product-price -->
+					    <div class='product-detail'>
+					<div class='ratings-container'>
+							<div class='ratings'>
+							    <div class='ratings-val' style='width: $pro_rate%;'></div><!-- End .ratings-val -->
+							</div><!-- End .ratings -->
+							<span class='ratings-text'>($pro_rate Reviews )</span>
+							
+					</div><!-- End .rating-container -->
+					</div>
+					    <div class='btn-cart' pid='$pro_id' id='product'>
+						Add to Cart
+					    </div><!-- End .product-price -->
+					</div>
+					
+				</div>
+				    
+			</div><!-- End .product -->
+";
 		}
 	}
 }

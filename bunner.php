@@ -1,9 +1,4 @@
-<div class="page-header text-center" style="background-image: url('16.jpg')">
-        		<div class="container">
-        			<h1 style="color:red;" class="page-title">Lecheri Blooms.<span style="color:black";>Shop Now</span></h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
-	<br>
+
 	<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,7 +66,7 @@
                             </a>
                         </div><!-- End .col-sm-4 col-lg-2 -->
 
-                        <div class="col-6 col-sm-4 col-lg-2">
+                        <div class="col-sm-4 col-lg-2">
                             <a href="#" class="cat-block">
                                 <figure>
                                     <span>
