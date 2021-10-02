@@ -1,20 +1,14 @@
 <?php
-require "config/constants.php";
 session_start();
-
-?>
-<!DOCTYPE html>
+include 'db.php';?><!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Lecheri Blooms/category.html -->
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Lecheri Blooms</title>
     <meta name="keywords" content="HTML5 Template">
-    <meta name="description" content="Lecheri Blooms - Bootstrap eCommerce Template">
+    <meta name="description" content="Lecheri Blooms ">
     <meta name="author" content="p-themes">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg">
@@ -35,12 +29,18 @@ session_start();
     <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/skins/skin-demo-13.css">
+    <link rel="stylesheet" href="assets/css/demos/demo-13.css">
+
+    <link rel="stylesheet" href="assets/css/demos/demo-22.css">
+    
 </head>
 
-<body style="background-color:#d6c7c7">
-    <div class="page-wrapper" color="blue">
-        <header class="header">
-            <div class="header-top" style:"background:yellow">
+<body>
+    <div class="page-wrapper">
+        <header class="header sticky-header" style="background-color:rgb(255,255,150)">
+            <div class="header-top" style="background-color:rgb(255,255,150)">
                 <div class="container">
                     <div class="header-left">
                         <div class="header-dropdown">
@@ -90,42 +90,97 @@ session_start();
                     </div><!-- End .header-left -->
 
                     <div class="header-right">
-                       
-                                <a href="about.php">Cantact Us</a>
-                          
-                    </div><!-- End .header-right -->
-                </div><!-- End .container -->
-            </div><!-- End .header-top -->
-        
-
-         <div class="header-middle sticky-header">
-                <div class="container">
-                       
-                    <div class="header-left">
-
                         <ul class="top-menu">
                             <li>
-                                <a href="#">MENU   </a>
-                                <ul   id="get_category">
-                                    
+                                <a>Contact Us</a>
+                                <ul>
+                                    <li><a href="about.php">About Us</a></li>
+                                    <li><a href="contact.php">Contact Us</a></li>
                                     
                                 </ul>
                             </li>
-                             
                         </ul><!-- End .top-menu -->
-                        <a href="index.php" class="icon-home">HOME</a>
                     </div><!-- End .header-right -->
-                    <div class="header-center">
-                        <a href="index.php">
-                            <img src="logo.jpg" alt="Lecheri Blooms Logo" width="40" height="10">
+                </div><!-- End .container -->
+            </div><!-- End .header-top -->
+
+            <div class="header-middle sticky-header">
+                <div class="container sticky-header">
+                    <div class="header-left sticky-header">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+
+                        <a href="index.php" class="logo">
+                            <img src="lg.png" alt="LecheriBlooms" width="105" height="25">
                         </a>
-                    </div>
+
+                        <nav class="main-nav sticky-header">
+                            <ul class="menu sf-arrows">
+                                <li class="megamenu-container active">
+                                    <a href="index.php">Home</a>
+                                </li>
+                                <li class="megamenu-container active">
+                                    <a href="products.php?pro_id=Wedding">Wedding</a>
+                                </li>
+                                <li>
+                                    <a class="sf-with-ul">Gift</a>
+
+                                    <ul>
+                                        <li><a href="#">Gift For Her</a></li>
+                                        <li><a href="#">Womens DAy</a></li>
+                                        <li><a href="#">Congratulation</a></li>
+                                    </ul>
+                                </li>
+                                <li class="megamenu-container active">
+                                    <a href="products.php?pro_id=Birthday">BirthDay</a>
+                                </li>
+                                <li class="megamenu-container active">
+                                    <a href="products.php?pro_id=Funeral">Funeral</a>
+                                </li>
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left -->
+
                     <div class="header-right">
+                        <div class="header-search">
+                            <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                            <form action="#" method="get">
+                                <div class="header-search-wrapper">
+                                    <label for="q" class="sr-only">Search</label>
+                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                                </div><!-- End .header-search-wrapper -->
+                            </form>
+                        </div><!-- End .header-search -->
+                         <div class="dropdown cart-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <div class="icon">
+                                    <i class="icon-heart-o"></i>
+                                <span class="cart-count">
+                                <?php
+                                    if (isset($_SESSION['uid'])) {
+    			
+                
+                                    $sql = "SELECT COUNT(*) AS count_item FROM wishlist WHERE user_id = $_SESSION[uid]";
+$query = mysqli_query($con,$sql);
+	$row = mysqli_fetch_array($query);
+	
+    echo $row["count_item"];}
+    else{
+        echo '0';
+    }	?>
+                                </span>
+                            </a>
+
+                         </div>
+                         
+                        </div><!-- End .wishlist -->
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                                <i class="icon-shopping-cart"></i>
-                                <span class="cart-count badge">0</span>
                                 
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count badge">0</span>
                                 
                             </a>
 
@@ -134,20 +189,13 @@ session_start();
                                     
                                 </div><!-- End .cart-product -->
 
-                                
-
                                 <div class="dropdown-cart-action">
                                     <a href="cart.php" class="btn btn-primary">View Cart</a>
                                     <a href="cart.php" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .dropdown-cart-total -->
                             </div><!-- End .dropdown-menu -->
                         </div><!-- End .cart-dropdown -->
-                    </div>
-                </div>
-         </div>
-        </header>
-                
-         
-
-    
-         
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+        </header><!-- End .header -->
